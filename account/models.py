@@ -46,7 +46,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
-    def create_email_password(self, *args, **kwargs):
+    def create_email_password(self, password):
         """
             Hashowanie hasła kompatybilnego z Dovecot
         """
@@ -55,6 +55,5 @@ class Account(AbstractBaseUser, PermissionsMixin):
             salt = sha512_crypt.salt
             self.email_password = "{algo}{crypted}".format(
                 algo=algo,
-                crypted=sha512_crypt.using(rounds=5000, salt=salt).hash(self.email_password)
+                crypted=sha512_crypt.using(rounds=5000, salt=salt).hash(password)
             )
-        #super().save(*args, **kwargs)
