@@ -70,10 +70,11 @@ class ChangeEmailPasswordForm(PasswordChangeForm):
         return new_password2
 
     def save(self, commit=True):
-        super().save(commit=False)
-        instance = Account.create_email_password(self.cleaned_data['new_password2'])
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["new_password2"])
+        user.create_email_password(self.cleaned_data["new_password2"])
         if commit:
-            instance.save()
-        return instance
+            user.save()
+        return user
 
 

@@ -13,7 +13,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    email_password = models.CharField(_('mail_password'), max_length=255)
+    email_password = models.CharField(_('mail_password'), max_length=255, default='')
 
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('is_staff'), default=False)
