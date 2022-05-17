@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel użytkownika{% endblock %}
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "konto:wyloguj" %}">Wyloguj</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "konto:zmien-haslo"  %}">Zmiana hasła</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href={% url "konto:logowanie"%}>Zaloguj</a>
+      </li>
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}
