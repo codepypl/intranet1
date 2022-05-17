@@ -71,8 +71,8 @@ class ChangeEmailPasswordForm(PasswordChangeForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["new_password2"])
-        user.create_email_password(self.cleaned_data["new_password2"])
+        user.set_password(self.cleaned_data['new_password2'])
+        user.create_email_password(self.cleaned_data['new_password2'])
         if commit:
             user.save()
         return user
